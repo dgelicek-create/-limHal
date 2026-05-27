@@ -69,7 +69,7 @@ fun WelcomeScreen(onStartClicked: () -> Unit) {
             drawCircle(color = strokeColor, radius = 80f, center = Offset(300f, 150f), style = stroke)
             drawArc(color = strokeColor, startAngle = 0f, sweepAngle = 180f, useCenter = false, 
                 topLeft = Offset(150f, 50f), size = Size(100f, 100f), style = stroke)
-            drawLine(color = strokeColor, start = Offset(0f, 200f), end = Offset(size.width, 200f), style = stroke)
+            drawLine(color = strokeColor, start = Offset(0f, 200f), end = Offset(size.width, 200f), strokeWidth = 2f)
         }
 
         Column(
