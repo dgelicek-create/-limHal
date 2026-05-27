@@ -25,6 +25,7 @@ import com.ismail.esonvpro.ui.main.MainViewModel
 import com.ismail.esonvpro.ui.qibla.QiblaScreen
 import com.ismail.esonvpro.ui.welcome.WelcomeScreen
 import java.util.Locale
+import androidx.compose.runtime.LaunchedEffect
 
 class MainActivity : ComponentActivity() {
 
