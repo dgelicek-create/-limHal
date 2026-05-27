@@ -19,6 +19,7 @@ import com.ismail.esonvpro.data.local.AppDatabase
 import com.ismail.esonvpro.data.remote.KtorClient
 import com.ismail.esonvpro.data.repository.PrayerTimeRepository
 import com.ismail.esonvpro.sensor.QiblaSensorManager
+import com.ismail.esonvpro.ui.auth.LoginScreen
 import com.ismail.esonvpro.ui.language.LanguageScreen
 import com.ismail.esonvpro.ui.main.MainScreen
 import com.ismail.esonvpro.ui.main.MainViewModel
@@ -66,7 +67,7 @@ fun EsonVProApp(mainViewModel: MainViewModel, qiblaSensorManager: QiblaSensorMan
 
     if (currentScreen == "welcome") {
         WelcomeScreen(
-            onStartClicked = { currentScreen = "home" },
+            onStartClicked = { currentScreen = "login" }, // Changed from home to login
             onLanguageClicked = { currentScreen = "language" }
         )
     } else if (currentScreen == "language") {
@@ -74,6 +75,25 @@ fun EsonVProApp(mainViewModel: MainViewModel, qiblaSensorManager: QiblaSensorMan
             currentLanguage = langCode
             currentScreen = "welcome"
         })
+    } else if (currentScreen == "login") {
+        LoginScreen(
+            onGoogleLogin = { 
+                // TODO: Implement actual Firebase Google login
+                currentScreen = "home" 
+            },
+            onPhoneLogin = { 
+                // TODO: Implement actual Firebase Phone login
+                currentScreen = "home" 
+            },
+            onFacebookLogin = {
+                // TODO: Implement actual Firebase Facebook login
+                currentScreen = "home"
+            },
+            onGuestLogin = {
+                // TODO: Implement actual Firebase Anonymous login
+                currentScreen = "home"
+            }
+        )
     } else {
         Scaffold(
             bottomBar = {

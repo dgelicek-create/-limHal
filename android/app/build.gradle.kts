@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.20"
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -64,4 +65,9 @@ dependencies {
 
     // Media3 ExoPlayer
     implementation("androidx.media3:media3-exoplayer:1.2.0")
+
+    // Firebase Auth & Google Login
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.android.gms:play-services-auth:20.7.0")
 }
