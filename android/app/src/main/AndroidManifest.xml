@@ -21,6 +21,17 @@
         android:label="EsonVPro"
         android:supportsRtl="true">
         
+        <!-- Main UI Entry Point (App Icon) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
         <!-- Boot Receiver -->
         <receiver
             android:name=".receiver.BootReceiver"
