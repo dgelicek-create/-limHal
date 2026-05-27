@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ismail.esonvpro">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Permissions for Doze Mode Bypass & Alarms -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
@@ -19,11 +18,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="EsonVPro"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.EsonVPro">
+        android:supportsRtl="true">
         
         <!-- Boot Receiver -->
         <receiver
