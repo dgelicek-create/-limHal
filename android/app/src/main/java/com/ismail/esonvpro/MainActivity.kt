@@ -19,10 +19,12 @@ import com.ismail.esonvpro.data.local.AppDatabase
 import com.ismail.esonvpro.data.remote.KtorClient
 import com.ismail.esonvpro.data.repository.PrayerTimeRepository
 import com.ismail.esonvpro.sensor.QiblaSensorManager
+import com.ismail.esonvpro.ui.language.LanguageScreen
 import com.ismail.esonvpro.ui.main.MainScreen
 import com.ismail.esonvpro.ui.main.MainViewModel
 import com.ismail.esonvpro.ui.qibla.QiblaScreen
 import com.ismail.esonvpro.ui.welcome.WelcomeScreen
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
 
@@ -47,22 +49,43 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun EsonVProApp(mainViewModel: MainViewModel, qiblaSensorManager: QiblaSensorManager) {
     var currentScreen by remember { mutableStateOf("welcome") }
+    var currentLanguage by remember { mutableStateOf("tr") }
+    val context = androidx.compose.ui.platform.LocalContext.current
+
+    // Update Locale when currentLanguage changes
+    LaunchedEffect(currentLanguage) {
+        val locale = Locale(currentLanguage)
+        Locale.setDefault(locale)
+        val resources = context.resources
+        val config = resources.configuration
+        config.setLocale(locale)
+        @Suppress("DEPRECATION")
+        resources.updateConfiguration(config, resources.displayMetrics)
+    }
 
     if (currentScreen == "welcome") {
-        WelcomeScreen(onStartClicked = { currentScreen = "home" })
+        WelcomeScreen(
+            onStartClicked = { currentScreen = "home" },
+            onLanguageClicked = { currentScreen = "language" }
+        )
+    } else if (currentScreen == "language") {
+        LanguageScreen(onLanguageSelected = { langCode ->
+            currentLanguage = langCode
+            currentScreen = "welcome"
+        })
     } else {
         Scaffold(
             bottomBar = {
             NavigationBar {
                 NavigationBarItem(
                     icon = { Text("⏰") },
-                    label = { Text("Vakitler") },
+                    label = { Text(androidx.compose.ui.res.stringResource(id = com.ismail.esonvpro.R.string.nav_times)) },
                     selected = currentScreen == "home",
                     onClick = { currentScreen = "home" }
                 )
                 NavigationBarItem(
                     icon = { Text("🧭") },
-                    label = { Text("Kıble") },
+                    label = { Text(androidx.compose.ui.res.stringResource(id = com.ismail.esonvpro.R.string.nav_qibla)) },
                     selected = currentScreen == "qibla",
                     onClick = { currentScreen = "qibla" }
                 )

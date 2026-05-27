@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">EsonVPro</string>
+    <string name="welcome_greeting">Selâmun Aleyküm</string>
+    <string name="welcome_slogan">İlim yolculuğunuzu aydınlatır</string>
+    <string name="welcome_language_selector">Türkçe</string>
+    <string name="terms_part1">Uygulamanın </string>
+    <string name="terms_link">kullanım şartlarını</string>
+    <string name="terms_part2"> ve </string>
+    <string name="privacy_link">gizlilik sözleşmesini</string>
+    <string name="terms_part3"> okudum ve kabul ediyorum.</string>
+    <string name="button_start">BAŞLA</string>
+    
+    <string name="nav_times">Vakitler</string>
+    <string name="nav_qibla">Kıble</string>
 </resources>

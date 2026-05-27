@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">EsonVPro</string>
+    <string name="welcome_greeting">Peace be upon you</string>
+    <string name="welcome_slogan">Illuminates your journey of knowledge</string>
+    <string name="welcome_language_selector">English</string>
+    <string name="terms_part1">I have read and agree to the </string>
+    <string name="terms_link">terms of use</string>
+    <string name="terms_part2"> and </string>
+    <string name="privacy_link">privacy policy</string>
+    <string name="terms_part3">.</string>
+    <string name="button_start">START</string>
+    
+    <string name="nav_times">Times</string>
+    <string name="nav_qibla">Qibla</string>
+</resources>

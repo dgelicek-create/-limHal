@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">EsonVPro</string>
+    <string name="welcome_greeting">السلام عليكم</string>
+    <string name="welcome_slogan">ينير رحلتك المعرفية</string>
+    <string name="welcome_language_selector">العربية</string>
+    <string name="terms_part1">لقد قرأت وأوافق على </string>
+    <string name="terms_link">شروط الاستخدام</string>
+    <string name="terms_part2"> و </string>
+    <string name="privacy_link">سياسة الخصوصية</string>
+    <string name="terms_part3">.</string>
+    <string name="button_start">ابدأ</string>
+    
+    <string name="nav_times">الأوقات</string>
+    <string name="nav_qibla">القبلة</string>
+</resources>

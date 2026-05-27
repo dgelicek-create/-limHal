@@ -14,6 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.res.stringResource
+import com.ismail.esonvpro.R
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
@@ -31,7 +33,7 @@ import androidx.compose.ui.window.Dialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WelcomeScreen(onStartClicked: () -> Unit) {
+fun WelcomeScreen(onStartClicked: () -> Unit, onLanguageClicked: () -> Unit) {
     var isChecked by remember { mutableStateOf(false) }
     var showTermsDialog by remember { mutableStateOf(false) }
     var showPrivacyDialog by remember { mutableStateOf(false) }
@@ -61,15 +63,12 @@ fun WelcomeScreen(onStartClicked: () -> Unit) {
             }
             drawPath(path, color = Color(0xFF142459))
             
-            // Draw some geometric outlines (circles, diamonds) to simulate the pattern
-            val stroke = Stroke(width = 2f)
-            val strokeColor = goldColor.copy(alpha = 0.3f)
+            // Draw intersecting dark blue circles at top left (based on user sketch)
+            val stroke = Stroke(width = 2.dp.toPx())
+            val strokeColor = Color(0xFF203575) // Slightly lighter than background
             
-            drawCircle(color = strokeColor, radius = 60f, center = Offset(100f, 100f), style = stroke)
-            drawCircle(color = strokeColor, radius = 80f, center = Offset(300f, 150f), style = stroke)
-            drawArc(color = strokeColor, startAngle = 0f, sweepAngle = 180f, useCenter = false, 
-                topLeft = Offset(150f, 50f), size = Size(100f, 100f), style = stroke)
-            drawLine(color = strokeColor, start = Offset(0f, 200f), end = Offset(size.width, 200f), strokeWidth = 2f)
+            drawCircle(color = strokeColor, radius = 50.dp.toPx(), center = Offset(40.dp.toPx(), 40.dp.toPx()), style = stroke)
+            drawCircle(color = strokeColor, radius = 45.dp.toPx(), center = Offset(110.dp.toPx(), 60.dp.toPx()), style = stroke)
         }
 
         Column(
@@ -82,7 +81,7 @@ fun WelcomeScreen(onStartClicked: () -> Unit) {
 
             // Text section
             Text(
-                text = "Selâmun Aleyküm",
+                text = stringResource(id = R.string.welcome_greeting),
                 color = goldColor,
                 fontSize = 24.sp,
                 fontFamily = FontFamily.Serif,
@@ -92,7 +91,7 @@ fun WelcomeScreen(onStartClicked: () -> Unit) {
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
-                text = "İlmHal",
+                text = stringResource(id = R.string.app_name),
                 color = goldColor,
                 fontSize = 42.sp,
                 fontFamily = FontFamily.Serif,
@@ -102,20 +101,21 @@ fun WelcomeScreen(onStartClicked: () -> Unit) {
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
-                text = "İlim yolculuğunuzu aydınlatır",
+                text = stringResource(id = R.string.welcome_slogan),
                 color = lightGray,
                 fontSize = 16.sp
             )
 
             Spacer(modifier = Modifier.height(48.dp))
 
-            // Language Selector Placeholder
+            // Language Selector
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp)
                     .clip(RoundedCornerShape(12.dp))
                     .background(Color(0xFFE0E0E0)) // Light gray background
+                    .clickable { onLanguageClicked() }
                     .padding(horizontal = 16.dp),
                 contentAlignment = Alignment.CenterStart
             ) {
@@ -124,7 +124,7 @@ fun WelcomeScreen(onStartClicked: () -> Unit) {
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Türkçe", color = Color(0xFF333333), fontSize = 16.sp)
+                    Text(stringResource(id = R.string.welcome_language_selector), color = Color(0xFF333333), fontSize = 16.sp)
                     Text(">", color = goldColor, fontSize = 20.sp, fontWeight = FontWeight.Bold)
                 }
             }
@@ -146,20 +146,26 @@ fun WelcomeScreen(onStartClicked: () -> Unit) {
                     )
                 )
                 
+                val termsPart1 = stringResource(id = R.string.terms_part1)
+                val termsLink = stringResource(id = R.string.terms_link)
+                val termsPart2 = stringResource(id = R.string.terms_part2)
+                val privacyLink = stringResource(id = R.string.privacy_link)
+                val termsPart3 = stringResource(id = R.string.terms_part3)
+                
                 val annotatedString = buildAnnotatedString {
-                    append("Uygulamanın ")
+                    append(termsPart1)
                     pushStringAnnotation(tag = "TERMS", annotation = "terms")
                     withStyle(style = SpanStyle(color = lightGray, textDecoration = TextDecoration.Underline)) {
-                        append("kullanım şartlarını")
+                        append(termsLink)
                     }
                     pop()
-                    append(" ve ")
+                    append(termsPart2)
                     pushStringAnnotation(tag = "PRIVACY", annotation = "privacy")
                     withStyle(style = SpanStyle(color = lightGray, textDecoration = TextDecoration.Underline)) {
-                        append("gizlilik sözleşmesini")
+                        append(privacyLink)
                     }
                     pop()
-                    append(" okudum ve kabul ediyorum.")
+                    append(termsPart3)
                 }
                 
                 ClickableText(
@@ -190,7 +196,7 @@ fun WelcomeScreen(onStartClicked: () -> Unit) {
                 shape = RoundedCornerShape(12.dp)
             ) {
                 Text(
-                    text = "BAŞLA",
+                    text = stringResource(id = R.string.button_start),
                     color = deepBlue,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
