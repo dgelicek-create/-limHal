@@ -1,0 +1,35 @@
+name: Android APK Oluşturucu
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Projeyi Kopyala
+      uses: actions/checkout@v4
+
+    - name: Java (JDK 17) Kurulumu
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Uygun Gradle Sürümünü Kur
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        gradle-version: '8.7'
+
+    - name: APK'yı Derle
+      run: |
+        cd android
+        gradle assembleDebug --stacktrace
+
+    - name: APK Dosyasını İndirilebilir Hale Getir
+      uses: actions/upload-artifact@v4
+      with:
+        name: EsonVPro-APK
+        path: android/app/build/outputs/apk/debug/app-debug.apk
