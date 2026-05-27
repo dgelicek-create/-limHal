@@ -77,4 +77,5 @@ fun EsonVProApp(mainViewModel: MainViewModel, qiblaSensorManager: QiblaSensorMan
             }
         }
     }
+    }
 }
