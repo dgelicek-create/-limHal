@@ -16,10 +16,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.ismail.esonvpro.data.local.AppDatabase
+import com.ismail.esonvpro.data.remote.KtorClient
+import com.ismail.esonvpro.data.repository.PrayerTimeRepository
+import com.ismail.esonvpro.sensor.QiblaSensorManager
 import com.ismail.esonvpro.ui.main.MainScreen
 import com.ismail.esonvpro.ui.main.MainViewModel
 import com.ismail.esonvpro.ui.qibla.QiblaScreen
-import com.ismail.esonvpro.ui.welcome.WelcomeScreen
 import com.ismail.esonvpro.ui.welcome.WelcomeScreen
 
 class MainActivity : ComponentActivity() {
